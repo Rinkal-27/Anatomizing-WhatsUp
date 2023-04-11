@@ -93,31 +93,31 @@ if uploaded_file is not None:
         #     st.pyplot(fig)
 
         st.title("ACTIVITY MAP")
-        col1, col2 = st.columns(2)
+        # col1, col2 = st.columns(2)
         # Plot busiest day on the first column
-        with col1:
-            st.header("MOST BUSY DAY")
-            busy_day = helper.weekly_activity(selected_user, df)
-            fig, ax = plt.subplots(figsize=(8, 6))
-            ax = sns.lineplot(x=busy_day.index, y=busy_day.values, color='#597a62')
-            ax.set_xlabel("DAY OF THE WEEK")
-            ax.set_ylabel("NUMBER OF MESSAGES")
-            ax.set_xticklabels(['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'])
-            for i, v in enumerate(busy_day.values):
-                ax.text(i, v + 10, str(v), ha='center', fontsize=12, fontweight='bold')
-            st.pyplot(fig)
+        # with col1:
+        st.header("MOST BUSY DAY")
+        busy_day = helper.weekly_activity(selected_user, df)
+        sns.set_palette("husl")  # set color palette
+        fig, ax = plt.subplots(figsize=(6, 4))
+        ax = sns.lineplot(x=busy_day.index, y=busy_day.values)
+        ax.set_xlabel("Day of the Week")
+        ax.set_ylabel("Number of Messages")
+        ax.set_xticklabels(['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'])
+        ax.grid(True)  # add grid lines
+        for i, v in enumerate(busy_day.values):
+            ax.text(i, v + 10, str(v), ha='center', fontsize=10, fontweight='bold')
+        st.pyplot(fig)
         # Plot busiest month on the second column
-        with col2:
-            st.header("MOST BUSY MONTH")
-            busy_month = helper.monthly_activity(selected_user, df)
-            fig, ax = plt.subplots(figsize=(8, 6))
-            ax = sns.barplot(x=busy_month.index, y=busy_month.values, color='#2c757d')
-            ax.set_xlabel("MONTH")
-            ax.set_ylabel("NUMBER OF MESSAGES")
-            ax.set_xticklabels(['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'])
-            # for i, v in enumerate(busy_month.values):
-            #     ax.text(i, v + 10, str(v), ha='center', fontsize=12, fontweight='bold')
-            st.pyplot(fig)
+
+        st.header("MOST BUSY MONTH")
+        busy_month = helper.monthly_activity(selected_user, df)
+        fig, ax = plt.subplots(figsize=(8, 6))
+        ax = sns.barplot(x=busy_month.index, y=busy_month.values, color='#2c757d')
+        ax.set_xlabel("MONTH")
+        ax.set_ylabel("NUMBER OF MESSAGES")
+        ax.set_xticklabels(['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'])
+        st.pyplot(fig)
 
         # Heatmap of timewise usage
         st.title("USAGE HEATMAP")
