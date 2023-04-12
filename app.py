@@ -195,7 +195,6 @@ if uploaded_file is not None:
         st.plotly_chart(fig)
 
         # Identify bad words in the messages
-
         # Function to identify bad words
         def identify_bad_words(text):
             bad_words = ['Fuck', 'MC', 'BC']  # Add your list of bad words here

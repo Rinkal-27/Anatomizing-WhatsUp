@@ -60,7 +60,6 @@ def most_common_words(selected_user, df):
     for message in temp['message']:
         words.extend(message.split())
     # To find frequency of each word
-    from collections import Counter
     return_df = pd.DataFrame(Counter(words).most_common(20))
     return return_df
 
@@ -130,6 +129,6 @@ def activity_heatmap(selected_user, df):
 
 # Function to identify bad words
 def identify_bad_words(text):
-    bad_words = ['kem', 'cho', 'jamva'] # Add your list of bad words here
+    bad_words = ['kem', 'cho', 'jamva']
     pattern = '|'.join(bad_words)
     return re.findall(pattern, text)

@@ -35,7 +35,7 @@ def preprocess(data):
     df['only_date'] = df['date'].dt.date
     df['day_name'] = df['date'].dt.day_name()
 
-    # Generating period for geatmap
+    # Generating period for heatmap
     period = []
     for hour in df[['day_name', 'hour']]['hour']:
         if hour == 23:
